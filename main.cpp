@@ -107,146 +107,146 @@ struct CarWash //2)
 
 
 /*
-1)
+1) Bass Amplifier
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Power output RMS in Watts
+    2) Has input pad switch
+    3) Has direct output
+    4) Volume setting
+    5) Cabinet type
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Set output ON
+    2) Set output OFF
+    3) Change volume
  */
 
 /*
-2)
+2) Drum
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Shell material
+    2) Rim material
+    3) Diameter in inches
+    4) Height in inches
+    5) Head material
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Head hit with stick
+    2) Head hit with brush
+    3) Rim shot with stick
  */
 
 /*
-3)
+3) Musician
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Height in inches
+    2) Weight in pounds
+    3) Hair color
+    4) Can jump
+    5) Has ear plugs
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Put in earplugs
+    2) Play instrument
+    3) Jump
  */
 
 /*
-4)
+4) Audience member
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Height in inches
+    2) Weight in pounds
+    3) Hair color
+    4) Can mosh
+    5) Can surf
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Rock out
+    2) Mosh
+    3) Surf
  */
 
 /*
-5)
+5) Channel strip
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Gain
+    2) Compression
+    3) Aux 1 send level
+    4) Pre EQ
+    5) Input enabled
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Set gain level
+    2) Set aux 1 send level
+    3) Set input enabled
  */
 
 /*
-6)
+6) Input section              // simplified for this exercise
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Num XLR inputs
+    2) Num 1/4" inputs
+    3) Phantom power ON
+    4) Input pad ON
+    5) HPF ON                 // high pass filter
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Set input pad ON
+    2) Set HPF ON
+    3) Set phantom power ON
  */
 
 /*
-7)
+7) Auxilliary send section
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Num aux sends
+    2) Aux send knob color
+    3) Aux send 1 level         // typical
+    4) Monitor level
+    5) Headphone level
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Set aux send 1 level
+    2) Set monitor level
+    3) Setheadphone level
  */
 
 /*
-8)
+8) Output section
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Left channel ON
+    2) Right channel ON
+    3) Left channel output fader position
+    4) Right channel output fader position
+    5) Stereo output fader position
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Set channel ON
+    2) Set stereo output ON
+    3) Set stereo output fader position
  */
 
 /*
-9)
+9) Meter section
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Power ON
+    2) Peak ON
+    3) Left Level
+    4) Right Level
+    5) PFL ON       // Pre-fader listen
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Display power ON value
+    2) Display channel value       // Maybe channel (L/R or 0/1) as a parameter
+    3) Display peak ON value
  */
 
 /*
-10)
+10) Analog Mixer
 5 properties:
  These 5 properties should be UDTs that you defined above.
  this goes along with the instruction:
     One of your 10 UDTs should only use UDTs for its member variable types.
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Channel Strip    // Simplified as 1 for now. Realize this would be a collection in a real scenario
+    2) Input Section
+    3) Auxilliary Send Section
+    4) Output Section
+    5) Meter section
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Enable channel strip
+    2) Enable output group
+    3) Set output fader position
  */
 
 #include <iostream>
