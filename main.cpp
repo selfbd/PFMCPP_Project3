@@ -142,149 +142,140 @@ struct CarWash //2)
     Car carBeingServiced;  
 };
 
+// 1) BEGIN =====================================================================
+
+/* Nested class plan to be used for UDTs 1 and 2
+    struct FoodItemToBeHeated 
+    {
+        float beginningTemperatureF = 75.0f;
+        float maxTemperature = 500.0f;        
+
+        void heatToDesiredTemparature(double desiredTemperature = 100.0);   
+    };
+*/
 
 /*
-1) Bass Amplifier
+1) Toaster oven
 5 properties:
-    1) Power output RMS in Watts
-    2) Has input pad switch
-    3) Has direct output
-    4) Volume setting
-    5) Cabinet type
+    1) Number of racks
+    2) Number of heating modes
+    3) Rack length (inches)
+    4) Rack width (inches)
+    5) Maximum cooking time (minutes)
 3 things it can do:
-    1) Set output ON
-    2) Set output OFF
-    3) Change volume
- */
+    1) Cook food item
+    2) Time food item cooking
+    3) Activate food item done notification
 
-/*
-2) Drum
+2) Microwave oven
 5 properties:
-    1) Shell material
-    2) Rim material
-    3) Diameter in inches
-    4) Height in inches
-    5) Head material
+    1) Power (W)
+    2) Number of heating modes
+    3) Platter diameter (in)
+    4) Weight (Pounds)
+    5) Volume (cubic inches)
 3 things it can do:
-    1) Head hit with stick
-    2) Head hit with brush
-    3) Rim shot with stick
- */
+    1) Cook food item
+    2) Time food item cooking
+    3) Activate food item done notification
+ 
+3) Bass Amplifier
+5 properties:
+    1) Power output RMS (W)
+    2) Input pad (dB)
+    3) Bass level 
+    4) Treble level
+    5) Volume level
+3 things it can do:
+    1) Activate speaker output
+    2) Mute speaker output
+    3) Activate headphone output
 
-/*
-3) Musician
+4) Lawn mower
 5 properties:
-    1) Height in inches
-    2) Weight in pounds
-    3) Hair color
-    4) Can jump
-    5) Has ear plugs
+    1) Weight (Pounds)
+    2) Cutting width (inches)
+    3) Number mowing height adjustments
+    4) Ground speed (mph)
+    5) Wheel diameter
 3 things it can do:
-    1) Put in earplugs
-    2) Play instrument
-    3) Jump
- */
+    1) Mow
+    2) Mulch
+    3) Self-propel forward
 
-/*
-4) Audience member
+5) Receiver
 5 properties:
-    1) Height in inches
-    2) Weight in pounds
-    3) Hair color
-    4) Can mosh
-    5) Can surf
+    1) Weight (Pounds)
+    2) Number audio inputs
+    3) Number audio/video inputs
+    4) Network capable
+    5) Standby Power Consumption (W)
 3 things it can do:
-    1) Rock out
-    2) Mosh
-    3) Surf
- */
+    1) Select input source
+    2) Select output destination
+    3) Activate on-screen display
 
-/*
-5) Channel strip
+6) AM/FM tuner
 5 properties:
-    1) Gain
-    2) Compression
-    3) Aux 1 send level
-    4) Pre EQ
-    5) Input enabled
+    1) Weight (Pounds)
+    2) AM Channel Spacing (kHz)
+    3) Signal to noise ratio (dB)
+    4) Stereo Separation (dB0)
+    5) Total Harmonic Distortion (%)
 3 things it can do:
-    1) Set gain level
-    2) Set aux 1 send level
-    3) Set input enabled
- */
+    1) Play AM
+    2) Play FM
+    3) Select Stereo Output Mode
+	
+7) CD player
+5 properties:
+    1) Weight (Pounds)
+    2) Total Harmonic Distortion (%)
+    3) Signal to noise ratio (dB)
+    4) Dynamic Range
+    5) Capacity
+3 things it can do:
+    1) Load CD
+    2) Play CD
+    3) Eject CD
+	
+8) Power amplifier
+5 properties:
+    1) Power output RMS (W)
+    2) Total Harmonic Distortion (%)
+    3) Signal to noise ratio (dB)
+    4) Sensitivity (dB)
+    5) Weight (Pounds)						
+3 things it can do:
+    1) Set output to standby
+    2) Set output level
+    3) Set output ON
 
-/*
-6) Input section              // simplified for this exercise
+9) Record player
 5 properties:
-    1) Num XLR inputs
-    2) Num 1/4" inputs
-    3) Phantom power ON
-    4) Input pad ON
-    5) HPF ON                 // high pass filter
+    1) Weight (Pounds)
+    2) Turntable material
+    3) Turntable Diameter (inches)
+    4) Drive type
+    5) Playback speed (RPM)
 3 things it can do:
-    1) Set input pad ON
-    2) Set HPF ON
-    3) Set phantom power ON
- */
-
-/*
-7) Auxilliary send section
+    1) Rotate turntable
+    2) Play record
+    3) Return tone arm to home position
+	
+10) Home entertainment system
 5 properties:
-    1) Num aux sends
-    2) Aux send knob color
-    3) Aux send 1 level         // typical
-    4) Monitor level
-    5) Headphone level
+    1) Receiver
+    2) AM/FM tuner
+    3) CD player
+    4) Power amplifier
+    5) Record player
 3 things it can do:
-    1) Set aux send 1 level
-    2) Set monitor level
-    3) Setheadphone level
- */
-
-/*
-8) Output section
-5 properties:
-    1) Left channel ON
-    2) Right channel ON
-    3) Left channel output fader position
-    4) Right channel output fader position
-    5) Stereo output fader position
-3 things it can do:
-    1) Set channel ON
-    2) Set stereo output ON
-    3) Set stereo output fader position
- */
-
-/*
-9) Meter section
-5 properties:
-    1) Power ON
-    2) Peak ON
-    3) Left Level
-    4) Right Level
-    5) PFL ON       // Pre-fader listen
-3 things it can do:
-    1) Display power ON value
-    2) Display channel value       // Maybe channel (L/R or 0/1) as a parameter
-    3) Display peak ON value
- */
-
-/*
-10) Analog Mixer
-5 properties:
- These 5 properties should be UDTs that you defined above.
- this goes along with the instruction:
-    One of your 10 UDTs should only use UDTs for its member variable types.
-    1) Channel Strip    // Simplified as 1 for now. Realize this would be a collection in a real scenario
-    2) Input Section
-    3) Auxilliary Send Section
-    4) Output Section
-    5) Meter section
-3 things it can do:
-    1) Enable channel strip
-    2) Enable output group
-    3) Set output fader position
- */
+    1) Select input device
+    2) Set output level
+    3) Mute audio output
+*/
+// 1) END =======================================================================
 
 #include <iostream>
 int main()
