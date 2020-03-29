@@ -8,8 +8,45 @@ Video:  Chapter 2 Part 5
  Purpose: The entire purpose of this 5-part project is to get you writing C++ code that compiles and to reinforce the syntax habits that C++ requires.  What you create in this project will be used as the basis of Project 5 in the course.   
  
  1) write 10 user-defined types in plain-English, 
-    in the comments above your UDT, write out, in plain-english, 3 things it can do, and 5 traits.
-    Note: Your 10th UDT will use 5 of your UDTs for its properties, so maybe start on UDT #10 first. This goes along with instruction #6.
+    in the comments above your UDT, write out, in plain-english, 3 things it can do, and 5 traits or properties.
+    Note: Your 10th UDT will use 5 of your UDTs for its properties, so start on UDT #10 first and work backwards. This goes along with instruction #6.
+
+    The goal of this step is to get you to think about breaking down an object into smaller and smaller objects, until the smallest object is made of up only primitives. 
+
+    Here is an example:
+    Cell Phone
+
+    A Cell Phone is made up of:
+        Display
+        Memory
+        CPU
+        Radio
+        Applications
+
+    These things make up the 5 traits.
+    These 5 things can be broken down into their own sub-objects and properties. 
+
+    For example: Display
+    A Display has the following traits or properties:
+        pixels
+        amount of power consumed.
+        brightness.
+
+    the Display's brightness can be represented with a Primitive, such as a double. 
+    The amount of power consumed can also be represented with a Primitive.
+    The 'pixels' must be represented with an array of Pixel instances.  Arrays have not been discussed and can't be used in this project.
+    Instead, we can use an Integer primitive to describe the Number of Pixels:
+
+    Display:
+        Number of Pixels
+        Amount of Power consumed
+        Brightness
+
+    Notice that I did not write "has a display" or "Has memory" or "has a cpu"  
+    Writing 'has a ___" checks whether or not your object *has the ability to do something*.
+    Instead, I wrote "Display" or "CPU".  These are specific objects or amounts. 
+    In C++ terms, this means to I want you to avoid bool (has a) as a member variable type.
+    Instead, prefer the other primitive types when you get to step 2)
 ************************
     Commit after you complete this step so i can review before you proceed with the rest of the projects
     Ping me in Slack to review this step.
@@ -52,8 +89,8 @@ send me a DM to check your pull request
 //1) write out, in plain-english, 5 traits and 3 things it can do.
 Car Wash   
 5 properties:
-    1) has vacuum cleaners
-    2) has eco-friendly cleaning supplies
+    1) vacuum cleaners
+    2) eco-friendly cleaning supplies
     3) stores the amount of water used per week.
     4) stores amount of profit made per week
     5) number of cars serviced per day
@@ -66,9 +103,9 @@ Car Wash
 struct CarWash //2)        
 {
     //2) has vacuum cleaners
-    bool hasVacuumCleaners = true; //3) member variables with relevant data types.
+    int numVacuumCleaners = 3; //3) member variables with relevant data types.
     //2) has eco-friendly cleaning supplies
-    bool hasEcoFriendlyCleaningSupplies = true; //3) member variables with relevant data types.
+    int numEcoFriendlyCleaningSupplies = 20; //3) member variables with relevant data types.
     //2) stores the amount of water used per week.
     float waterUsedPerWeek = 200.f; //3) member variables with relevant data types.
     //2) stores amount of profit made per week
