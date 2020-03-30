@@ -156,7 +156,7 @@ struct ToasterOven
     // Maximum cooking time (minutes)
     int cookingTimeMax = 10;
 
-    struct CookingSpecToasterOven FIXME just call it 'CookingSpec'
+    struct CookingSpec
     {
         int temperatureF = 400;
         int timeMin = 5;        
@@ -165,13 +165,13 @@ struct ToasterOven
     };
 
     // Cook food item
-    void cookItem (CookingSpecToasterOven cookSpec);
+    void cookItem (CookingSpec cookSpec);
     // Time food item cooking
-    void timeItemCooking (CookingSpecToasterOven cookSpec);
+    void timeItemCooking (CookingSpec cookSpec);
     // Activate food item done notification
-    void activateItemDoneNotification (CookingSpecToasterOven cookSpec);
+    void activateItemDoneNotification (CookingSpec cookSpec);
 
-    CookingSpecToasterOven itemSpec;
+    CookingSpec itemSpec;
 };
 
 /* Example from step 1
@@ -201,7 +201,7 @@ struct ToasterOven
     // 5) Volume (cubic inches)
     float volumeCubicIn = 4096.0f;
 
-    struct CookingSpecMicrowaveOven FIXME just call it 'CookingSpec'
+    struct CookingSpec
     {
         int powerLevel = 5;     // 0 - 10
         int timeMin = 5;        
@@ -210,13 +210,13 @@ struct ToasterOven
     };
 
     // 1) Cook food item
-    void cookItem (CookingSpecMicrowaveOven cookSpec);
+    void cookItem (CookingSpec cookSpec);
     // 2) Time food item cooking
-    void timeItemCooking (CookingSpecMicrowaveOven cookSpec);
+    void timeItemCooking (CookingSpec cookSpec);
     // 3) Activate food item done notification
-    void activateItemDoneNotification (CookingSpecMicrowaveOven cookSpec);
+    void activateItemDoneNotification (CookingSpec cookSpec);
 
-    CookingSpecMicrowaveOven itemSpec;
+    CookingSpec itemSpec;
  };
 
 struct BassAmplifier
