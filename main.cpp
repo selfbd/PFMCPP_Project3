@@ -156,7 +156,7 @@ struct ToasterOven
     // Maximum cooking time (minutes)
     int cookingTimeMax = 10;
 
-    struct CookingSpecToasterOven 
+    struct CookingSpecToasterOven FIXME just call it 'CookingSpec'
     {
         int temperatureF = 400;
         int timeMin = 5;        
@@ -201,7 +201,7 @@ struct ToasterOven
     // 5) Volume (cubic inches)
     float volumeCubicIn = 4096.0f;
 
-    struct CookingSpecMicrowaveOven
+    struct CookingSpecMicrowaveOven FIXME just call it 'CookingSpec'
     {
         int powerLevel = 5;     // 0 - 10
         int timeMin = 5;        
