@@ -136,37 +136,45 @@ struct CarWash //2)
     float chargeCustomer();
     //2) detail the car interior
     void detailInterior( Car car );
-    
                
     //5) a member variable whose type is a UDT.
     Car carBeingServiced;  
 };
 
-// 1) BEGIN =====================================================================
+// ========================================================================================
 
-/* Nested class plan to be used for UDTs 1 and 2
-    struct FoodItemToBeHeated 
+struct ToasterOven
+{
+    // Number of racks
+    int numRacks = 1;
+    // Number of heating modes
+    int numHeatingModes = 2;
+    // Rack length (inches)
+    int rackLengthIn = 9;
+    // Rack width (inches)
+    int rackWidthIn = 6;
+    // Maximum cooking time (minutes)
+    int cookingTimeMax = 10;
+
+    struct CookingSpecToasterOven 
     {
-        float beginningTemperatureF = 75.0f;
-        float maxTemperature = 500.0f;        
+        int temperatureF = 400;
+        int timeMin = 5;        
 
-        void heatToDesiredTemparature(double desiredTemperature = 100.0);   
+        void initialize(int notificationVolume = 4);   
     };
-*/
 
-/*
-1) Toaster oven
-5 properties:
-    1) Number of racks
-    2) Number of heating modes
-    3) Rack length (inches)
-    4) Rack width (inches)
-    5) Maximum cooking time (minutes)
-3 things it can do:
-    1) Cook food item
-    2) Time food item cooking
-    3) Activate food item done notification
+    // Cook food item
+    void cookItem (CookingSpecToasterOven cookSpec);
+    // Time food item cooking
+    void timeItemCooking (CookingSpecToasterOven cookSpec);
+    // Activate food item done notification
+    void activateItemDoneNotification (CookingSpecToasterOven cookSpec);
 
+    CookingSpecToasterOven itemSpec;
+};
+
+/* Example from step 1
 2) Microwave oven
 5 properties:
     1) Power (W)
@@ -178,104 +186,206 @@ struct CarWash //2)
     1) Cook food item
     2) Time food item cooking
     3) Activate food item done notification
+ */
  
-3) Bass Amplifier
-5 properties:
-    1) Power output RMS (W)
-    2) Input pad (dB)
-    3) Bass level 
-    4) Treble level
-    5) Volume level
-3 things it can do:
-    1) Activate speaker output
-    2) Mute speaker output
-    3) Activate headphone output
+ struct MicrowaveOven
+ {
+    // 1) Power (W)
+    int powerW = 1000;
+    // 2) Number of heating modes
+    int numHeatingModes = 3;
+    // 3) Platter diameter (in)
+    int platterDiameterIn = 12;
+    // 4) Weight (Pounds)
+    float weightPounds = 12.5f;
+    // 5) Volume (cubic inches)
+    float volumeCubicIn = 4096.0f;
 
-4) Lawn mower
-5 properties:
-    1) Weight (Pounds)
-    2) Cutting width (inches)
-    3) Number mowing height adjustments
-    4) Ground speed (mph)
-    5) Wheel diameter
-3 things it can do:
-    1) Mow
-    2) Mulch
-    3) Self-propel forward
+    struct CookingSpecMicrowaveOven
+    {
+        int powerLevel = 5;     // 0 - 10
+        int timeMin = 5;        
 
-5) Receiver
-5 properties:
-    1) Weight (Pounds)
-    2) Number audio inputs
-    3) Number audio/video inputs
-    4) Network capable
-    5) Standby Power Consumption (W)
-3 things it can do:
-    1) Select input source
-    2) Select output destination
-    3) Activate on-screen display
+        void initialize(int notificationVolume = 4);   
+    };
 
-6) AM/FM tuner
-5 properties:
-    1) Weight (Pounds)
-    2) AM Channel Spacing (kHz)
-    3) Signal to noise ratio (dB)
-    4) Stereo Separation (dB0)
-    5) Total Harmonic Distortion (%)
-3 things it can do:
-    1) Play AM
-    2) Play FM
-    3) Select Stereo Output Mode
-	
-7) CD player
-5 properties:
-    1) Weight (Pounds)
-    2) Total Harmonic Distortion (%)
-    3) Signal to noise ratio (dB)
-    4) Dynamic Range
-    5) Capacity
-3 things it can do:
-    1) Load CD
-    2) Play CD
-    3) Eject CD
-	
-8) Power amplifier
-5 properties:
-    1) Power output RMS (W)
-    2) Total Harmonic Distortion (%)
-    3) Signal to noise ratio (dB)
-    4) Sensitivity (dB)
-    5) Weight (Pounds)						
-3 things it can do:
-    1) Set output to standby
-    2) Set output level
-    3) Set output ON
+    // 1) Cook food item
+    void cookItem (CookingSpecMicrowaveOven cookSpec);
+    // 2) Time food item cooking
+    void timeItemCooking (CookingSpecMicrowaveOven cookSpec);
+    // 3) Activate food item done notification
+    void activateItemDoneNotification (CookingSpecMicrowaveOven cookSpec);
 
-9) Record player
-5 properties:
-    1) Weight (Pounds)
-    2) Turntable material
-    3) Turntable Diameter (inches)
-    4) Drive type
-    5) Playback speed (RPM)
-3 things it can do:
-    1) Rotate turntable
-    2) Play record
-    3) Return tone arm to home position
-	
-10) Home entertainment system
-5 properties:
-    1) Receiver
-    2) AM/FM tuner
-    3) CD player
-    4) Power amplifier
-    5) Record player
-3 things it can do:
-    1) Select input device
-    2) Set output level
-    3) Mute audio output
-*/
-// 1) END =======================================================================
+    CookingSpecMicrowaveOven itemSpec;
+ };
+
+struct BassAmplifier
+{
+    // 1) Power output RMS (W)
+    int powerW = 500;
+    // 2) Input pad (dB)
+    int inputPadDb = -15;
+    // 3) Bass level 
+    int bassLevel = 0;      // -10 to 10
+    // 4) Treble level
+    int trebleLevel = 0;    // -10 to 10
+    // 5) Volume level
+    int volumeLevel = 0;   // 0 - 11
+
+    // 1) Activate speaker output
+    void activateSpeakerOutput(bool protection = true);
+    // 2) Mute speaker output
+    void muteSpeakerOutput();
+    // 3) Activate headphone output
+    void activateHeadphoneOutput(bool limitter = true);
+};
+
+struct LawnMower
+{
+    // 1) Weight (Pounds)
+    float weightPounds = 72.4f;
+    // 2) Cutting width (inches)
+    int cuttingWidthIn = 22;
+    // 3) Number mowing height adjustments
+    int numMowingHeightAdjustments = 3;
+    // 4) Ground speed (mph)
+    int groundSpeedMph = 4;     // 0 - 4
+    // 5) Wheel diameter
+    int wheelDiameterIn = 8;
+
+    // 1) Mow
+    void mow(int throttlePosition = 5);
+    // 2) Mulch
+    void mulch(bool bagging = false);
+    // 3) Self-propel forward
+    void selfPropelFwd();
+};
+
+struct Receiver
+{
+    // 1) Weight (Pounds)
+    float weightPounds = 6.8f;
+    // 2) Number audio inputs
+    int numInputs = 6;
+    // 3) Number audio/video inputs
+    int numAVInputs = 4;
+    // 4) Network capable
+    bool networkCapable = true;
+    // 5) Standby Power Consumption (W)
+    float standbyPowerConsumptionW = 0.1f;
+
+    // 1) Select input source
+    int selectInputSource (int defaultInputSource = 2);
+    // 2) Select output destination
+    int selectOutputDestination (int defaultOutputDestimation = 1);
+    // 3) Activate on-screen display
+    int activateOnScreenDisplay(int defaultForeColor = 4);
+};
+
+struct AmFmTuner
+{
+    // 1) Weight (Pounds)
+    float weightPounds = 3.2f;
+    // 2) AM Channel Spacing (kHz)
+    int amChannelSpacingKHz = 10;
+    // 3) Signal to noise ratio (dB)
+    int signalToNoiseRatioDb = 50;
+    // 4) Stereo Separation (dB)
+    int stereoSeparationDb = 38;
+    // 5) Total Harmonic Distortion (%)
+    float totalHarmonicDistortionPct = 0.8f;
+
+    // 1) Play AM
+    int playAm (int station = 680);
+    // 2) Play FM
+    int playFm (float station = 98.6f);
+    // 3) Select Stereo Output Mode    
+    int stereoOutputMode(int defaultStereoOutputMode = 1);
+};
+
+struct CdPlayer
+{
+    // 1) Weight (Pounds)
+    float weightPounds = 2.0f;
+    // 2) Total Harmonic Distortion (%)
+    float thdPct = 0.00002f;
+    // 3) Signal to noise ratio (dB)
+    int snrDb = 116;
+    // 4) Dynamic Range
+    int dnrDb = 100;
+    // 5) Capacity
+    int capacity = 1;
+
+    // 1) Load CD
+    int loadCD();
+    // 2) Play CD
+    int playCD(int defaultTrack = 1);
+    // 3) Eject CD
+    int ejectCD(bool powerOff = false);
+};
+
+struct PowerAmplifier
+{
+    // 1) Power output RMS (W)
+    int continuousPowerOutputRmsW = 100;
+    // 2) Total Harmonic Distortion (%)
+    float thdPct = 0.002f;
+    // 3) Signal to noise ratio (dB)
+    int snrDb = 93;
+    // 4) Sensitivity (V)
+    float inputSensitivityV = 1.09f;
+    // 5) Weight (Pounds)	
+    float weightPounds = 51.9f;
+
+    // 1) Set output to standby
+    int setOutputStandby();
+    // 2) Set output level
+    int setOutputLevel(float level = 10.2f);
+    // 3) Set output ON   
+    int setOutputOn(); 
+};
+
+struct RecordPlayer
+{
+    // 1) Weight (Pounds)
+    float weightPounds = 21.2f;
+    // 2) Turntable material
+    char turntableMaterial = 'A';
+    // 3) Turntable Diameter (inches)
+    float turntableDiameter = 13.078125f;
+    // 4) Drive type
+    char driveType = 'D';
+    // 5) Playback speed (RPM)
+    float playbackSpeed = 33.3f;
+
+    // 1) Rotate turntable
+    int rotateTurntable(int direction = 1, float playbackSpeed = 33.3f);
+    // 2) Play record
+    int playRecord(int track = 1);
+    // 3) Return tone arm to home position
+    int homeTurnArm(bool powerOFF = 1);
+};
+
+struct HomeEntertainmentSystem
+{
+    // 1) Receiver
+    Receiver receiver;
+    // 2) AM/FM tuner
+    AmFmTuner tuner;
+    // 3) CD player
+    CdPlayer cdPlayer;
+    // 4) Power amplifier
+    PowerAmplifier powerAmp;
+    // 5) Record player
+    RecordPlayer recordPlayer;
+
+    // 1) Select input device
+    int selectInputDevice(int inputChannel = 1);
+    // 2) Set output level
+    int setOutputLevel(int level = 1);
+    // 3) Mute audio output
+    int muteAudioOutput();
+};
 
 #include <iostream>
 int main()
