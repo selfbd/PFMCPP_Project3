@@ -23,11 +23,13 @@ struct Limb
 
 void Limb::stepForward()
 {
+    // Step forward
     return;
 }
 
 int Limb::stepSize()
 {
+    // Step size logic
     return 30;
 }
 
@@ -44,6 +46,21 @@ struct Person
 
 	void run (int howFast, bool startWithLeftFoot);
 };
+
+void Person::run(int howFast, bool startWithLeftFoot)
+{
+	if (startWithLeftFoot == true)
+	{
+		leftFoot.stepForward();
+		rightFoot.stepForward();
+	}
+	else
+	{
+		rightFoot.stepForward();
+		leftFoot.stepForward();
+	}
+	distanceTraveled += leftFoot.stepSize() + rightFoot.stepSize();
+}
 
  /*
  2) provide implementations for the member functions you declared in your 10 user-defined types from the previous video outside of your UDT definitions.
@@ -86,18 +103,18 @@ struct ToasterOven
 
 void ToasterOven::cookItem(CookingSpec cookSpec)
 {
-    if(cookSpec.temperatureF > 100) {};         // do something
+    if(cookSpec.temperatureF > 100) {}         // do something
 }
 
 void ToasterOven::timeItemCooking(CookingSpec cookSpec)
 {
-    if(cookSpec.timeMin > 0) {};                // do something
+    if(cookSpec.timeMin > 0) {}                // do something
 }
 
 void ToasterOven::activateItemDoneNotification(CookingSpec cookSpec)
 {
     auto durationMin = 6;
-    if(durationMin > cookSpec.timeMin) {};     // do something
+    if(durationMin > cookSpec.timeMin) {}     // do something
 }
 
 // ToasterOven - End ====================================================
@@ -127,18 +144,18 @@ void ToasterOven::activateItemDoneNotification(CookingSpec cookSpec)
 
 void MicrowaveOven::cookItem(CookingSpec cookSpec)
 {
-    if(cookSpec.powerLevel > 1) {};             // do something
+    if(cookSpec.powerLevel > 1) {}             // do something
 }
 
 void MicrowaveOven::timeItemCooking(CookingSpec cookSpec)
 {
-    if(cookSpec.timeMin > 0) {};                // do something
+    if(cookSpec.timeMin > 0) {}                // do something
 }
 
 void MicrowaveOven::activateItemDoneNotification(CookingSpec cookSpec)
 {
     auto durationMin = 6;
-    if(durationMin > cookSpec.timeMin) {};     // do something
+    if(durationMin > cookSpec.timeMin) {}     // do something
 }
 
 // MicrowaveOven - End ==================================================
@@ -160,7 +177,7 @@ struct BassAmplifier
 
 void BassAmplifier::activateSpeakerOutput(bool protection)
 {
-    if(protection == false) {};     // do something
+    if(protection == false) {}     // do something
 }
 
 void BassAmplifier::muteSpeakerOutput()
@@ -170,7 +187,7 @@ void BassAmplifier::muteSpeakerOutput()
 
 void BassAmplifier::activateHeadphoneOutput(bool limitter)
 {
-    if(limitter == false) {};     // do something
+    if(limitter == false) {}     // do something
 }
 
 // BassAmplifier - End ==================================================
@@ -192,12 +209,12 @@ struct LawnMower
 
 void LawnMower::mow(int throttlePosition)
 {
-    if(throttlePosition > 0) {};     // do something
+    if(throttlePosition > 0) {}     // do something
 }
 
 void LawnMower::mulch(bool bagging)
 {
-    if(bagging == false) {};        // do something
+    if(bagging == false) {}        // do something
 }
 
 void LawnMower::selfPropelFwd()
@@ -224,19 +241,19 @@ struct Receiver
 
 int Receiver::selectInputSource(int defaultInputSource)
 {
-    if(defaultInputSource > 0) {};     // do something
+    if(defaultInputSource > 0) {}     // do something
     return 0;
 }
 
 int Receiver::selectOutputDestination(int defaultOutputDestination)
 {
-    if(defaultOutputDestination > 0) {};     // do something
+    if(defaultOutputDestination > 0) {}     // do something
     return 0;
 }
 
 int Receiver::activateOnScreenDisplay(int defaultForeColor)
 {
-    if(defaultForeColor > 0) {};     // do something
+    if(defaultForeColor > 0) {}     // do something
     return 0;
 }
 
@@ -259,19 +276,19 @@ struct AmFmTuner
 
 int AmFmTuner::playAm(int station)
 {
-    if(station > 534 && station < 1606) {};     // do something
+    if(station > 534 && station < 1606) {}     // do something
     return 0;
 }
 
 int AmFmTuner::playFm(float station)
 {
-    if(station > 87.0f && station < 109.0f) {};     // do something
+    if(station > 87.0f && station < 109.0f) {}     // do something
     return 0;
 }
 
 int AmFmTuner::stereoOutputMode(int defaultStereoOutputMode)
 {
-    if(defaultStereoOutputMode > 0) {};     // do something
+    if(defaultStereoOutputMode > 0) {}     // do something
     return 0;
 }
 
@@ -300,7 +317,7 @@ int CdPlayer::loadCD()
 
 int CdPlayer::playCD(int defaultTrack)
 {
-    if(defaultTrack > 0) {};     // do something
+    if(defaultTrack > 0) {}     // do something
     return 0;
 }
 
@@ -340,7 +357,7 @@ int PowerAmplifier::setOutputStandby()
 
 int PowerAmplifier::setOutputLevel(float level)
 {
-    if(level > 0.0f) {};     // do something
+    if(level > 0.0f) {}     // do something
     return 0;
 }
 
@@ -385,7 +402,7 @@ int RecordPlayer::rotateTurntable(int direction, float speed)
 
 int RecordPlayer::playRecord(int track)
 {
-    if(track > 0) {};     // do something
+    if(track > 0) {}     // do something
     return 0;
 }
 
@@ -419,13 +436,13 @@ struct HomeEntertainmentSystem
 
 int HomeEntertainmentSystem::selectInputDevice(int inputChannel)
 {
-    if(inputChannel > 0) {};     // do something
+    if(inputChannel > 0) {}     // do something
     return 0;
 }
 
 int HomeEntertainmentSystem::setOutputLevel(int level)
 {
-    if(level > 0) {};     // do something
+    if(level > 0) {}     // do something
     return 0;
 }
 
