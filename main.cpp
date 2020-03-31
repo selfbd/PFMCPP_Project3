@@ -35,12 +35,12 @@ int Limb::stepSize()
 
 struct Person
 {
-	int age;
-	int height;
-	float hairLength;
-	float GPA;
-	unsigned int SATScore;
-	int distanceTraveled;
+    int age;
+    int height;
+    float hairLength;
+    float GPA;
+    unsigned int SATScore;
+    int distanceTraveled;
     Limb leftFoot;
     Limb rightFoot;
 
