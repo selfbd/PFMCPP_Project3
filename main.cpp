@@ -51,7 +51,7 @@ void Person::run(int howFast, bool startWithLeftFoot)
 {
     if (howFast == 0) return;
 
-	if (startWithLeftFoot == true)
+    if (startWithLeftFoot == true)
 	{
 		leftFoot.stepForward();
 		rightFoot.stepForward();
