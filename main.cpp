@@ -17,8 +17,8 @@ Create a branch named Part2
 
 struct Limb
 {
-	void stepForward();
-	int stepSize();
+    void stepForward();
+    int stepSize();
 };
 
 void Limb::stepForward()
