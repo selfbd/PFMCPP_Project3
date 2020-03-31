@@ -49,6 +49,8 @@ struct Person
 
 void Person::run(int howFast, bool startWithLeftFoot)
 {
+    if (howFast == 0) return;
+
 	if (startWithLeftFoot == true)
 	{
 		leftFoot.stepForward();
