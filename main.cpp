@@ -15,9 +15,54 @@ Create a branch named Part2
     You'll need to insert the Person struct from the video in the space below.
  */
 
+struct Limb
+{
+    void stepForward();
+    int stepSize();
+};
 
+void Limb::stepForward()
+{
+    // Step forward
+    return;
+}
 
+int Limb::stepSize()
+{
+    // Step size logic
+    return 30;
+}
 
+struct Person
+{
+    int age;
+    int height;
+    float hairLength;
+    float GPA;
+    unsigned int SATScore;
+    int distanceTraveled;
+    Limb leftFoot;
+    Limb rightFoot;
+
+	void run (int howFast, bool startWithLeftFoot);
+};
+
+void Person::run(int howFast, bool startWithLeftFoot)
+{
+    if (howFast == 0) return;
+
+    if (startWithLeftFoot == true)
+	{
+		leftFoot.stepForward();
+		rightFoot.stepForward();
+	}
+	else
+	{
+		rightFoot.stepForward();
+		leftFoot.stepForward();
+	}
+	distanceTraveled += leftFoot.stepSize() + rightFoot.stepSize();
+}
 
  /*
  2) provide implementations for the member functions you declared in your 10 user-defined types from the previous video outside of your UDT definitions.
@@ -35,251 +80,380 @@ send me a DM to check your pull request
  Wait for my code review.
  */
 
-// ========================================================================================
+// ToasterOven - Begin ==================================================
 
 struct ToasterOven
 {
-    // Number of racks
     int numRacks = 1;
-    // Number of heating modes
     int numHeatingModes = 2;
-    // Rack length (inches)
     int rackLengthIn = 9;
-    // Rack width (inches)
     int rackWidthIn = 6;
-    // Maximum cooking time (minutes)
     int cookingTimeMax = 10;
 
     struct CookingSpec
     {
         int temperatureF = 400;
         int timeMin = 5;        
-
-        void initialize(int notificationVolume = 4);   
     };
 
-    // Cook food item
     void cookItem (CookingSpec cookSpec);
-    // Time food item cooking
     void timeItemCooking (CookingSpec cookSpec);
-    // Activate food item done notification
     void activateItemDoneNotification (CookingSpec cookSpec);
 
     CookingSpec itemSpec;
 };
 
-/* Example from step 1
-2) Microwave oven
-5 properties:
-    1) Power (W)
-    2) Number of heating modes
-    3) Platter diameter (in)
-    4) Weight (Pounds)
-    5) Volume (cubic inches)
-3 things it can do:
-    1) Cook food item
-    2) Time food item cooking
-    3) Activate food item done notification
- */
- 
+void ToasterOven::cookItem(CookingSpec cookSpec)
+{
+    if(cookSpec.temperatureF > 100) {}         // do something
+}
+
+void ToasterOven::timeItemCooking(CookingSpec cookSpec)
+{
+    if(cookSpec.timeMin > 0) {}                // do something
+}
+
+void ToasterOven::activateItemDoneNotification(CookingSpec cookSpec)
+{
+    auto durationMin = 6;
+    if(durationMin > cookSpec.timeMin) {}     // do something
+}
+
+// ToasterOven - End ====================================================
+
+// MicrowaveOven - Begin ================================================
+
  struct MicrowaveOven
  {
-    // 1) Power (W)
     int powerW = 1000;
-    // 2) Number of heating modes
     int numHeatingModes = 3;
-    // 3) Platter diameter (in)
     int platterDiameterIn = 12;
-    // 4) Weight (Pounds)
     float weightPounds = 12.5f;
-    // 5) Volume (cubic inches)
     float volumeCubicIn = 4096.0f;
 
     struct CookingSpec
     {
-        int powerLevel = 5;     // 0 - 10
+        int powerLevel = 5;
         int timeMin = 5;        
-
-        void initialize(int notificationVolume = 4);   
     };
 
-    // 1) Cook food item
     void cookItem (CookingSpec cookSpec);
-    // 2) Time food item cooking
     void timeItemCooking (CookingSpec cookSpec);
-    // 3) Activate food item done notification
     void activateItemDoneNotification (CookingSpec cookSpec);
 
     CookingSpec itemSpec;
  };
 
+void MicrowaveOven::cookItem(CookingSpec cookSpec)
+{
+    if(cookSpec.powerLevel > 1) {}             // do something
+}
+
+void MicrowaveOven::timeItemCooking(CookingSpec cookSpec)
+{
+    if(cookSpec.timeMin > 0) {}                // do something
+}
+
+void MicrowaveOven::activateItemDoneNotification(CookingSpec cookSpec)
+{
+    auto durationMin = 6;
+    if(durationMin > cookSpec.timeMin) {}     // do something
+}
+
+// MicrowaveOven - End ==================================================
+
+// BassAmplifier - Begin ================================================
+
 struct BassAmplifier
 {
-    // 1) Power output RMS (W)
     int powerW = 500;
-    // 2) Input pad (dB)
     int inputPadDb = -15;
-    // 3) Bass level 
-    int bassLevel = 0;      // -10 to 10
-    // 4) Treble level
-    int trebleLevel = 0;    // -10 to 10
-    // 5) Volume level
-    int volumeLevel = 0;   // 0 - 11
+    int bassLevel = 0;
+    int trebleLevel = 0;
+    int volumeLevel = 0;
 
-    // 1) Activate speaker output
     void activateSpeakerOutput(bool protection = true);
-    // 2) Mute speaker output
     void muteSpeakerOutput();
-    // 3) Activate headphone output
     void activateHeadphoneOutput(bool limitter = true);
 };
 
+void BassAmplifier::activateSpeakerOutput(bool protection)
+{
+    if(protection == false) {}     // do something
+}
+
+void BassAmplifier::muteSpeakerOutput()
+{
+    // do something
+}
+
+void BassAmplifier::activateHeadphoneOutput(bool limitter)
+{
+    if(limitter == false) {}     // do something
+}
+
+// BassAmplifier - End ==================================================
+
+// LawnMower - Begin ====================================================
+
 struct LawnMower
 {
-    // 1) Weight (Pounds)
     float weightPounds = 72.4f;
-    // 2) Cutting width (inches)
     int cuttingWidthIn = 22;
-    // 3) Number mowing height adjustments
     int numMowingHeightAdjustments = 3;
-    // 4) Ground speed (mph)
-    int groundSpeedMph = 4;     // 0 - 4
-    // 5) Wheel diameter
+    int groundSpeedMph = 4;
     int wheelDiameterIn = 8;
 
-    // 1) Mow
     void mow(int throttlePosition = 5);
-    // 2) Mulch
     void mulch(bool bagging = false);
-    // 3) Self-propel forward
     void selfPropelFwd();
 };
 
+void LawnMower::mow(int throttlePosition)
+{
+    if(throttlePosition > 0) {}     // do something
+}
+
+void LawnMower::mulch(bool bagging)
+{
+    if(bagging == false) {}        // do something
+}
+
+void LawnMower::selfPropelFwd()
+{
+    // do something
+}
+
+// LawnMower - End ======================================================
+
+// Receiver - Begin =====================================================
+
 struct Receiver
 {
-    // 1) Weight (Pounds)
     float weightPounds = 6.8f;
-    // 2) Number audio inputs
     int numInputs = 6;
-    // 3) Number audio/video inputs
     int numAVInputs = 4;
-    // 4) Network capable
     bool networkCapable = true;
-    // 5) Standby Power Consumption (W)
     float standbyPowerConsumptionW = 0.1f;
 
-    // 1) Select input source
     int selectInputSource (int defaultInputSource = 2);
-    // 2) Select output destination
-    int selectOutputDestination (int defaultOutputDestimation = 1);
-    // 3) Activate on-screen display
+    int selectOutputDestination (int defaultOutputDestination = 1);
     int activateOnScreenDisplay(int defaultForeColor = 4);
 };
 
+int Receiver::selectInputSource(int defaultInputSource)
+{
+    if(defaultInputSource > 0) {}     // do something
+    return 0;
+}
+
+int Receiver::selectOutputDestination(int defaultOutputDestination)
+{
+    if(defaultOutputDestination > 0) {}     // do something
+    return 0;
+}
+
+int Receiver::activateOnScreenDisplay(int defaultForeColor)
+{
+    if(defaultForeColor > 0) {}     // do something
+    return 0;
+}
+
+// Receiver - End =======================================================
+
+// AmFmTuner - Begin ====================================================
+
 struct AmFmTuner
 {
-    // 1) Weight (Pounds)
     float weightPounds = 3.2f;
-    // 2) AM Channel Spacing (kHz)
     int amChannelSpacingKHz = 10;
-    // 3) Signal to noise ratio (dB)
     int signalToNoiseRatioDb = 50;
-    // 4) Stereo Separation (dB)
     int stereoSeparationDb = 38;
-    // 5) Total Harmonic Distortion (%)
     float totalHarmonicDistortionPct = 0.8f;
 
-    // 1) Play AM
     int playAm (int station = 680);
-    // 2) Play FM
     int playFm (float station = 98.6f);
-    // 3) Select Stereo Output Mode    
     int stereoOutputMode(int defaultStereoOutputMode = 1);
 };
 
+int AmFmTuner::playAm(int station)
+{
+    if(station > 534 && station < 1606) {}     // do something
+    return 0;
+}
+
+int AmFmTuner::playFm(float station)
+{
+    if(station > 87.0f && station < 109.0f) {}     // do something
+    return 0;
+}
+
+int AmFmTuner::stereoOutputMode(int defaultStereoOutputMode)
+{
+    if(defaultStereoOutputMode > 0) {}     // do something
+    return 0;
+}
+
+// AmFmTuner - End ======================================================
+
+// CdPlayer - Begin =====================================================
+
 struct CdPlayer
 {
-    // 1) Weight (Pounds)
     float weightPounds = 2.0f;
-    // 2) Total Harmonic Distortion (%)
     float thdPct = 0.00002f;
-    // 3) Signal to noise ratio (dB)
     int snrDb = 116;
-    // 4) Dynamic Range
     int dnrDb = 100;
-    // 5) Capacity
     int capacity = 1;
 
-    // 1) Load CD
     int loadCD();
-    // 2) Play CD
     int playCD(int defaultTrack = 1);
-    // 3) Eject CD
     int ejectCD(bool powerOff = false);
 };
 
+int CdPlayer::loadCD()
+{
+    // do something
+    return 0;
+}
+
+int CdPlayer::playCD(int defaultTrack)
+{
+    if(defaultTrack > 0) {}     // do something
+    return 0;
+}
+
+int CdPlayer::ejectCD(bool powerOff)
+{
+    // Eject CD
+
+    if(powerOff)
+    {
+        // Set CD player power OFF
+    }
+    return 0;
+}
+
+// CdPlayer - End =======================================================
+
+// PowerAmplifier - Begin ===============================================
+
 struct PowerAmplifier
 {
-    // 1) Power output RMS (W)
     int continuousPowerOutputRmsW = 100;
-    // 2) Total Harmonic Distortion (%)
     float thdPct = 0.002f;
-    // 3) Signal to noise ratio (dB)
     int snrDb = 93;
-    // 4) Sensitivity (V)
     float inputSensitivityV = 1.09f;
-    // 5) Weight (Pounds)	
     float weightPounds = 51.9f;
 
-    // 1) Set output to standby
     int setOutputStandby();
-    // 2) Set output level
     int setOutputLevel(float level = 10.2f);
-    // 3) Set output ON   
     int setOutputOn(); 
 };
 
+int PowerAmplifier::setOutputStandby()
+{
+    // do something
+    return 0;
+}
+
+int PowerAmplifier::setOutputLevel(float level)
+{
+    if(level > 0.0f) {}     // do something
+    return 0;
+}
+
+int PowerAmplifier::setOutputOn()
+{
+    // do something
+    return 0;
+}
+
+// PowerAmplifier - End =================================================
+
+// RecordPlayer - Begin =================================================
+
 struct RecordPlayer
 {
-    // 1) Weight (Pounds)
     float weightPounds = 21.2f;
-    // 2) Turntable material
     char turntableMaterial = 'A';
-    // 3) Turntable Diameter (inches)
     float turntableDiameter = 13.078125f;
-    // 4) Drive type
     char driveType = 'D';
-    // 5) Playback speed (RPM)
     float playbackSpeed = 33.3f;
 
-    // 1) Rotate turntable
-    int rotateTurntable(int direction = 1, float playbackSpeed = 33.3f);
-    // 2) Play record
+    int rotateTurntable(int direction = 1, float speed = 33.3f);
     int playRecord(int track = 1);
-    // 3) Return tone arm to home position
-    int homeTurnArm(bool powerOFF = 1);
+    int homeToneArm(bool powerOFF = 1);
 };
+
+int RecordPlayer::rotateTurntable(int direction, float speed)
+{
+    // Realize "==" is challenging with non-exact floating-point numbers, but ignoring that implementation in this example
+    if (speed <= 0) return 1;
+
+    if (direction == 0 && speed > 0)
+    {
+        // Rotate turntable clockwise
+    }
+    else if (direction == 1 && speed > 0)
+    {
+        // Rotate turntable counter clockwise
+    }
+    return 0;
+}
+
+int RecordPlayer::playRecord(int track)
+{
+    if(track > 0) {}     // do something
+    return 0;
+}
+
+int RecordPlayer::homeToneArm(bool powerOff)
+{
+    // Home tone arm
+
+    if(powerOff)
+    {
+        // Set record player power OFF
+    }
+    return 0;
+}
+
+// RecordPlayer - End ===================================================
+
+// HomeEntertainmentSystem - Begin ======================================
 
 struct HomeEntertainmentSystem
 {
-    // 1) Receiver
     Receiver receiver;
-    // 2) AM/FM tuner
     AmFmTuner tuner;
-    // 3) CD player
     CdPlayer cdPlayer;
-    // 4) Power amplifier
     PowerAmplifier powerAmp;
-    // 5) Record player
     RecordPlayer recordPlayer;
 
-    // 1) Select input device
     int selectInputDevice(int inputChannel = 1);
-    // 2) Set output level
     int setOutputLevel(int level = 1);
-    // 3) Mute audio output
     int muteAudioOutput();
 };
+
+int HomeEntertainmentSystem::selectInputDevice(int inputChannel)
+{
+    if(inputChannel > 0) {}     // do something
+    return 0;
+}
+
+int HomeEntertainmentSystem::setOutputLevel(int level)
+{
+    if(level > 0) {}     // do something
+    return 0;
+}
+
+int HomeEntertainmentSystem::muteAudioOutput()
+{
+    // do something
+    return 0;
+}
+// HomeEntertainmentSystem - End ========================================
 
 #include <iostream>
 int main()
