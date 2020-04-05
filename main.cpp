@@ -58,8 +58,10 @@ struct ToasterOven
 
     struct CookingSpec
     {
-        int temperatureF = 400; FIXME nested types need constructors too
-        int timeMin = 5;        
+        int temperatureF;
+        int timeMin;      
+
+        CookingSpec() : temperatureF(400), timeMin(5) {}
     };
 
     ToasterOven() { temperatureOffsetF = 0.02f; } 
@@ -105,8 +107,10 @@ void ToasterOven::activateItemDoneNotification(CookingSpec cookSpec)
 
     struct CookingSpec
     {
-        int powerLevel = 5; FIXME nested types need constructors too
-        int timeMin = 5;        
+        int powerLevel;
+        int timeMin;  
+
+        CookingSpec() : powerLevel(5), timeMin(5) {}
     };
 
     MicrowaveOven() { yearManufactured = 1970; }
@@ -150,11 +154,6 @@ struct BassAmplifier
     int volumeLevel;
 
     BassAmplifier();
-//    {
-//       bassLevel = 0;
-//        trebleLevel = 0;
-//        volumeLevel = 11;
-//    }
     void activateSpeakerOutput(bool protection = true);
     void muteSpeakerOutput();
     void activateHeadphoneOutput(bool limitter = true);
