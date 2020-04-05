@@ -143,22 +143,30 @@ void MicrowaveOven::activateItemDoneNotification(CookingSpec cookSpec)
 
 struct BassAmplifier
 {
-    int powerW = 500;
-    int inputPadDb = -15;
-    int bassLevel = 0;
-    int trebleLevel = 0;
-    int volumeLevel = 0;
+    int powerW;
+    int inputPadDb;
+    int bassLevel;
+    int trebleLevel;
+    int volumeLevel;
 
-    BassAmplifier()
-    {
-        bassLevel = 0;
-        trebleLevel = 0;
-        volumeLevel = 11;
-    }
+    BassAmplifier();
+//    {
+//       bassLevel = 0;
+//        trebleLevel = 0;
+//        volumeLevel = 11;
+//    }
     void activateSpeakerOutput(bool protection = true);
     void muteSpeakerOutput();
     void activateHeadphoneOutput(bool limitter = true);
 };
+
+BassAmplifier:: BassAmplifier() :
+powerW(500)
+, inputPadDb(-15)
+, bassLevel(0)
+, trebleLevel(0)
+, volumeLevel(0)
+{}
 
 void BassAmplifier::activateSpeakerOutput(bool protection)
 {
@@ -217,21 +225,19 @@ void LawnMower::selfPropelFwd()
 
 struct Receiver
 {
-    float weightPounds = 6.8f;
-    int numInputs = 0;
-    int numAVInputs = 0;
-    bool networkCapable = true;
-    float standbyPowerConsumptionW = 0.1f;
+    float weightPounds;
+    int numInputs;
+    int numAVInputs;
+    bool networkCapable;
+    float standbyPowerConsumptionW;
 
-    Receiver()
-    {
-        numInputs = 6;
-        numAVInputs = 3;
-    }
+    Receiver();
     int selectInputSource (int defaultInputSource = 2);
     int selectOutputDestination (int defaultOutputDestination = 1);
     int activateOnScreenDisplay(int defaultForeColor = 4);
 };
+
+Receiver::Receiver() : weightPounds(6.8f), numInputs(6), numAVInputs(3), networkCapable(true), standbyPowerConsumptionW(0.1f) {}
 
 int Receiver::selectInputSource(int defaultInputSource)
 {
