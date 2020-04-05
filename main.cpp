@@ -69,6 +69,7 @@ struct ToasterOven
     int rackLengthIn = 9;
     int rackWidthIn = 6;
     int cookingTimeMax = 10;
+    float temperatureOffsetF = 0.0f;
 
     struct CookingSpec
     {
@@ -76,6 +77,11 @@ struct ToasterOven
         int timeMin = 5;        
     };
 
+    ToasterOven() { temperatureOffsetF = 0.02f; } 
+    void printTemperatureOffsetF()
+    {
+        std::cout << "ToasterOven temperatureOffsetF = " << temperatureOffsetF << std::endl;
+    }
     void cookItem (CookingSpec cookSpec);
     void timeItemCooking (CookingSpec cookSpec);
     void activateItemDoneNotification (CookingSpec cookSpec);
@@ -110,6 +116,7 @@ void ToasterOven::activateItemDoneNotification(CookingSpec cookSpec)
     int platterDiameterIn = 12;
     float weightPounds = 12.5f;
     float volumeCubicIn = 4096.0f;
+    int yearManufactured = 1978;
 
     struct CookingSpec
     {
@@ -117,6 +124,11 @@ void ToasterOven::activateItemDoneNotification(CookingSpec cookSpec)
         int timeMin = 5;        
     };
 
+    MicrowaveOven() { yearManufactured = 1970; }
+    void printYearManufactured()
+    {
+        std::cout << "MicrowaveOven yearManufactured = " << yearManufactured << std::endl;
+    }
     void cookItem (CookingSpec cookSpec);
     void timeItemCooking (CookingSpec cookSpec);
     void activateItemDoneNotification (CookingSpec cookSpec);
@@ -152,6 +164,12 @@ struct BassAmplifier
     int trebleLevel = 0;
     int volumeLevel = 0;
 
+    BassAmplifier()
+    {
+        bassLevel = 0;
+        trebleLevel = 0;
+        volumeLevel = 11;
+    }
     void activateSpeakerOutput(bool protection = true);
     void muteSpeakerOutput();
     void activateHeadphoneOutput(bool limitter = true);
@@ -179,11 +197,15 @@ void BassAmplifier::activateHeadphoneOutput(bool limitter)
 struct LawnMower
 {
     float weightPounds = 72.4f;
-    int cuttingWidthIn = 22;
+    int cuttingWidthIn = 20;
     int numMowingHeightAdjustments = 3;
     int groundSpeedMph = 4;
     int wheelDiameterIn = 8;
 
+    LawnMower()
+    {
+        cuttingWidthIn = 21;
+    }
     void mow(int throttlePosition = 5);
     void mulch(bool bagging = false);
     void selfPropelFwd();
@@ -211,11 +233,16 @@ void LawnMower::selfPropelFwd()
 struct Receiver
 {
     float weightPounds = 6.8f;
-    int numInputs = 6;
-    int numAVInputs = 4;
+    int numInputs = 0;
+    int numAVInputs = 0;
     bool networkCapable = true;
     float standbyPowerConsumptionW = 0.1f;
 
+    Receiver()
+    {
+        numInputs = 6;
+        numAVInputs = 3;
+    }
     int selectInputSource (int defaultInputSource = 2);
     int selectOutputDestination (int defaultOutputDestination = 1);
     int activateOnScreenDisplay(int defaultForeColor = 4);
@@ -250,7 +277,9 @@ struct AmFmTuner
     int signalToNoiseRatioDb = 50;
     int stereoSeparationDb = 38;
     float totalHarmonicDistortionPct = 0.8f;
+    int yearManufactured = 1960;
 
+    AmFmTuner() { yearManufactured = 1970; }
     int playAm (int station = 680);
     int playFm (float station = 98.6f);
     int stereoOutputMode(int defaultStereoOutputMode = 1);
@@ -285,7 +314,9 @@ struct CdPlayer
     int snrDb = 116;
     int dnrDb = 100;
     int capacity = 1;
+    int yearManufactured = 1989;
 
+    CdPlayer() { yearManufactured = 1995; }
     int loadCD();
     int playCD(int defaultTrack = 1);
     int ejectCD(bool powerOff = false);
@@ -325,7 +356,9 @@ struct PowerAmplifier
     int snrDb = 93;
     float inputSensitivityV = 1.09f;
     float weightPounds = 51.9f;
+    int yearManufactured = 1960;
 
+    PowerAmplifier() { yearManufactured = 1995; }
     int setOutputStandby();
     int setOutputLevel(float level = 10.2f);
     int setOutputOn(); 
@@ -359,7 +392,12 @@ struct RecordPlayer
     char turntableMaterial = 'A';
     float turntableDiameter = 13.078125f;
     char driveType = 'D';
-    float playbackSpeed = 33.3f;
+    float playbackSpeedRPM = 45;
+
+    RecordPlayer()
+    {
+        playbackSpeedRPM = 33.3f;
+    }
 
     int rotateTurntable(int direction = 1, float speed = 33.3f);
     int playRecord(int track = 1);
@@ -411,6 +449,7 @@ struct HomeEntertainmentSystem
     PowerAmplifier powerAmp;
     RecordPlayer recordPlayer;
 
+    HomeEntertainmentSystem() {}
     int selectInputDevice(int inputChannel = 1);
     int setOutputLevel(int level = 1);
     int muteAudioOutput();
@@ -438,6 +477,38 @@ int HomeEntertainmentSystem::muteAudioOutput()
 #include <iostream>
 int main()
 {
+    ToasterOven toasterOven;
+    MicrowaveOven microwaveOven;
+    BassAmplifier ampegSVT;
+    BassAmplifier fenderBassman;
+    LawnMower honda;
+    LawnMower toro;
+    Receiver receiver;
+    AmFmTuner tuner;
+    CdPlayer cdPlayer;
+    PowerAmplifier poweramp;
+    RecordPlayer turntable;
+    HomeEntertainmentSystem rig;
+
+    std::cout << std::endl;
 	Example::main();
+
+    std::cout << std::endl;
+    toasterOven.printTemperatureOffsetF();
+    microwaveOven.printYearManufactured();
+    ampegSVT.powerW = 300;
+    std::cout << "Ampeg SVT power output in Watts = " << ampegSVT.powerW << std::endl;
+    std::cout << "Is Ampeg SVT volume level equal to 0? " << (ampegSVT.volumeLevel == 0 ? "Yes" : "No") << std::endl;
+    fenderBassman.powerW = 350;
+    std::cout << "Fender Bassman power output in Watts = " << fenderBassman.powerW << std::endl;
+    std::cout << "Is Fender Bassman volume level equal to 0? " << (fenderBassman.volumeLevel == 0 ? "Yes" : "No") << std::endl;
+    honda.cuttingWidthIn = 22;
+    std::cout << "Honda lawnmower cutting width in inches = " << honda.cuttingWidthIn << std::endl;
+    honda.cuttingWidthIn = 36;
+    std::cout << "Toro lawnmower cutting width in inches = " << toro.cuttingWidthIn << std::endl;
+    std::cout << "Ratio Receiver inputs / AV inputs =  " << receiver.numInputs / receiver.numAVInputs << std::endl;
+    std::cout << "Turntable playback speed in RPM =  " << turntable.playbackSpeedRPM << std::endl;
+
+    std::cout << std::endl;
     std::cout << "good to go!" << std::endl;
 }
