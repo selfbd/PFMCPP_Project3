@@ -58,7 +58,7 @@ struct ToasterOven
 
     struct CookingSpec
     {
-        int temperatureF = 400;
+        int temperatureF = 400; FIXME nested types need constructors too
         int timeMin = 5;        
     };
 
@@ -105,7 +105,7 @@ void ToasterOven::activateItemDoneNotification(CookingSpec cookSpec)
 
     struct CookingSpec
     {
-        int powerLevel = 5;
+        int powerLevel = 5; FIXME nested types need constructors too
         int timeMin = 5;        
     };
 
