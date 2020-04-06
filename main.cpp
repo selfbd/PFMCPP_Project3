@@ -72,10 +72,6 @@ int main()
 
 //call Example::main() in main()
 
-
-
-
-
 // ToasterOven - Begin ==================================================
 
 struct ToasterOven
@@ -98,11 +94,12 @@ struct ToasterOven
     ToasterOven() { temperatureOffsetF = 0.02f; } 
     void printTemperatureOffsetF()
     {
-        std::cout << "ToasterOven temperatureOffsetF = " << temperatureOffsetF << std::endl;
+        std::cout << "Toaster oven temperatureOffsetF = " << temperatureOffsetF << std::endl;
     }
     void cookItem (CookingSpec cookSpec);
     void timeItemCooking (CookingSpec cookSpec);
     void activateItemDoneNotification (CookingSpec cookSpec);
+    void monitorTimeRemainingMin(int cookingTimeMin);
 
     CookingSpec itemSpec;
 };
@@ -121,6 +118,18 @@ void ToasterOven::activateItemDoneNotification(CookingSpec cookSpec)
 {
     auto durationMin = 6;
     if(durationMin > cookSpec.timeMin) {}     // do something
+}
+
+void ToasterOven::monitorTimeRemainingMin(int cookingTimeMin)
+{
+    int timeRemaining = cookingTimeMin;
+
+    while (timeRemaining > 0)
+    {
+        std::cout << "Toaster oven cooking time remaining = " << timeRemaining << std::endl; 
+        timeRemaining -= 1;       
+    }
+    std::cout << "Toaster oven cooking time complete" << std::endl; 
 }
 
 // ToasterOven - End ====================================================
@@ -152,6 +161,10 @@ void ToasterOven::activateItemDoneNotification(CookingSpec cookSpec)
     void cookItem (CookingSpec cookSpec);
     void timeItemCooking (CookingSpec cookSpec);
     void activateItemDoneNotification (CookingSpec cookSpec);
+    void monitorTimeRemainingMin(int cookingTimeMin);
+    void rampPowerLevelUp(int powerLevel, int rampStep);
+    void rampPowerLevelDown(int powerLevel, int rampStep);
+    void printPowerLevel(int powerLevel);
 
     CookingSpec itemSpec;
  };
@@ -170,6 +183,45 @@ void MicrowaveOven::activateItemDoneNotification(CookingSpec cookSpec)
 {
     auto durationMin = 6;
     if(durationMin > cookSpec.timeMin) {}     // do something
+}
+
+void MicrowaveOven::monitorTimeRemainingMin(int cookingTimeMin)
+{
+    int timeRemaining = cookingTimeMin;
+
+    while (timeRemaining > 0)
+    {
+        std::cout << "Microwave oven cooking time remaining = " << timeRemaining << std::endl; 
+        timeRemaining -= 1;       
+    }
+    std::cout << "Microwave oven cooking time complete" << std::endl; 
+}
+
+void MicrowaveOven::printPowerLevel(int powerLevel)
+{
+    std::cout << "Microwave oven power level = " << powerLevel << std::endl; 
+}
+
+void MicrowaveOven::rampPowerLevelUp(int powerLevel, int rampStep)
+{
+    int currentLowerLevel = 0;
+
+    for (int i = 0; i <= powerLevel; ++i)
+    {
+        if (currentLowerLevel > 0) printPowerLevel(currentLowerLevel); 
+        currentLowerLevel += rampStep;
+    }
+}
+
+void MicrowaveOven::rampPowerLevelDown(int powerLevel, int rampStep)
+{
+    int currentLowerLevel = powerLevel;
+
+    for (int i = currentLowerLevel; i <= 0; ++i)
+    {
+        printPowerLevel(currentLowerLevel); 
+        currentLowerLevel += rampStep;
+    }
 }
 
 // MicrowaveOven - End ==================================================
@@ -516,7 +568,18 @@ int main()
 
     std::cout << std::endl;
     toasterOven.printTemperatureOffsetF();
+    toasterOven.itemSpec.timeMin = 10;
+    toasterOven.monitorTimeRemainingMin(toasterOven.itemSpec.timeMin);
+
+    std::cout << std::endl;
     microwaveOven.printYearManufactured();
+    microwaveOven.itemSpec.powerLevel = 10;
+    microwaveOven.itemSpec.timeMin = 5;
+    microwaveOven.rampPowerLevelUp(microwaveOven.itemSpec.powerLevel, 1);
+    microwaveOven.monitorTimeRemainingMin(toasterOven.itemSpec.timeMin);
+    microwaveOven.rampPowerLevelDown(microwaveOven.itemSpec.powerLevel, 1);
+
+    std::cout << std::endl;
     ampegSVT.powerW = 300;
     std::cout << "Ampeg SVT power output in Watts = " << ampegSVT.powerW << std::endl;
     std::cout << "Is Ampeg SVT volume level equal to 0? " << (ampegSVT.volumeLevel == 0 ? "Yes" : "No") << std::endl;
