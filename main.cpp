@@ -217,10 +217,10 @@ void MicrowaveOven::rampPowerLevelDown(int powerLevel, int rampStep)
 {
     int currentLowerLevel = powerLevel;
 
-    for (int i = currentLowerLevel; i <= 0; ++i)
+    for (int i = currentLowerLevel; i >= 0; --i)
     {
-        printPowerLevel(currentLowerLevel); 
-        currentLowerLevel += rampStep;
+        if (currentLowerLevel > 0) printPowerLevel(currentLowerLevel); 
+        currentLowerLevel -= rampStep;
     }
 }
 
